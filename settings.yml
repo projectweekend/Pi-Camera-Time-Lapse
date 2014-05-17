@@ -1,10 +1,8 @@
 snap:
-    interval: 60
+    interval: 5
     total: 60
 image:
     directory: /home/pi/images
-    type: jpeg
     quality: 85
-    resolution:
-        width: 1024
-        height: 768
+    resolution_x: 1024
+    resolution_y: 768
