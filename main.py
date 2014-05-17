@@ -14,8 +14,9 @@ if __name__ == '__main__':
     with picamera.PiCamera() as camera:
         camera.resolution((IMAGE.resolution_x, IMAGE.resolution_y))
         time.sleep(2)
-        for i, _ in enumerate(camera.capture_continuous('img{counter:03d}.jpg',
-                                quality=IMAGE.quality)):
+        output_file = '{0}/img{counter:03d}.jpg'.format(IMAGE.directory)
+        capture = camera.capture_continuous(output_file, quality=IMAGE.quality)
+        for i, _ in enumerate(capture):
             if i == SNAP.total - 1:
                 break
             time.sleep(SNAP.interval)
