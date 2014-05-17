@@ -1,6 +1,6 @@
 snap:
     interval: 5
-    total: 60
+    total: 10
 image:
     directory: /home/pi/images
     quality: 85
