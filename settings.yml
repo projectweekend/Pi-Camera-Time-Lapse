@@ -3,6 +3,6 @@ snap:
     total: 10
 image:
     directory: /home/pi/images
-    quality: 85
-    resolution_x: 1024
-    resolution_y: 768
+    quality: 100
+    resolution_x: 2592
+    resolution_y: 1944
