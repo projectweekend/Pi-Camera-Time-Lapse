@@ -2,6 +2,7 @@ import time
 import yaml
 import picamera
 import utils
+import storage
 
 
 with open('settings.yml') as settings_file:
