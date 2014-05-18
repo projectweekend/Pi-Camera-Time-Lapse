@@ -1,27 +1,21 @@
-from dropbox import client
-from .settings import DROPBOX_TOKEN_FILE, DROPBOX_KEY, DROPBOX_SECRET
+import dropbox
+from dropbox.client import ErrorResponse
+from .settings import DROPBOX_TOKEN_FILE
 
 
-def save_auth_token(auth_token):
-    with open(DROPBOX_TOKEN_FILE, 'w+') as f:
-        f.write(auth_token)
-    return auth_token
+def has_valid_dropbox_token():
+    try:
+        with open(DROPBOX_TOKEN_FILE, 'r') as f:
+            dropbox_token = f.read()
+            client = dropbox.client.DropboxClient(dropbox_token)
+            client.account_info()
+    except (IOError, ErrorResponse):
+        return False
+    return True
 
 
-def authentication_flow():
-    auth_successful = False
-    while not auth_successful:
-        flow = client.DropboxOAuth2FlowNoRedirect(DROPBOX_KEY, DROPBOX_SECRET)
-        authorize_url = flow.start()
-        print('1. Go to: ' + authorize_url)
-        print('2. Click "Allow" (you might have to log in first)')
-        print('3. Copy the authorization code')
-        code = raw_input('Enter the authorization code here: ').strip()
-        try:
-            auth_token, user_id = flow.finish(code)
-        except client.ErrorResponse:
-            print('ERROR: Invalid authorization code. Please try again.')
-            print('')
-        else:
-            save_auth_token(auth_token)
-            auth_successful = True
+def display_token_instructions():
+    print('MISSING DROPBOX TOKEN!')
+    print('1. Go to https://rpi-camera-uploader.herokuapp.com/ and click "Get started"')
+    print('2. "Allow" Raspberry Pi Camera Uploader access to Dropbox')
+    print('3. Put downloaded "dropbox.txt" in root of "/Pi-Camera-Time-Lapse"')

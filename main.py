@@ -1,3 +1,4 @@
+import sys
 import time
 import yaml
 import picamera
@@ -14,7 +15,8 @@ with open('settings.yml') as settings_file:
 if __name__ == '__main__':
 
     if not uploader.has_valid_dropbox_token():
-        uploader.authentication_flow()
+        uploader.display_token_instructions()
+        sys.exit(1)
 
     with picamera.PiCamera() as camera:
         camera.resolution = (IMAGE.resolution_x, IMAGE.resolution_y)
