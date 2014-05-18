@@ -56,3 +56,6 @@ docs/_build/
 *.sublime-project
 *.sublime-workspace
 
+# Dropbox key file
+dropbox.txt
+
