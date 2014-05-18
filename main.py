@@ -11,11 +11,11 @@ with open('settings.yml') as settings_file:
     SNAP = utils.Settings(YML['snap'])
 
 
-if not uploader.has_valid_dropbox_token():
-    uploader.authentication_flow()
-
-
 if __name__ == '__main__':
+
+    if not uploader.has_valid_dropbox_token():
+        uploader.authentication_flow()
+
     with picamera.PiCamera() as camera:
         camera.resolution = (IMAGE.resolution_x, IMAGE.resolution_y)
         time.sleep(2)
