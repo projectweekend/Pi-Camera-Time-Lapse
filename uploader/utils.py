@@ -1,7 +1,5 @@
 import dropbox
-
-
-DROPBOX_TOKEN_FILE = "./dropbox.txt"
+from .settings import DROPBOX_TOKEN_FILE
 
 
 def has_valid_dropbox_token():
