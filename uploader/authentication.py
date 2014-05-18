@@ -1,6 +1,12 @@
 import dropbox
 from dropbox.client import ErrorResponse
-from .settings import DROPBOX_TOKEN_FILE
+from settings import DROPBOX_TOKEN_FILE
+
+
+def load_dropbox_token():
+    with open(DROPBOX_TOKEN_FILE, 'r') as f:
+        dropbox_token = f.read()
+    return dropbox_token
 
 
 def has_valid_dropbox_token():

@@ -1,15 +1,8 @@
 import sys
 import time
-import yaml
 import picamera
-import utils
+from settings import IMAGE, SNAP
 import uploader
-
-
-with open('settings.yml') as settings_file:
-    YML = yaml.safe_load(settings_file)
-    IMAGE = utils.Settings(YML['image'])
-    SNAP = utils.Settings(YML['snap'])
 
 
 if __name__ == '__main__':
