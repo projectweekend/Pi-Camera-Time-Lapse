@@ -18,7 +18,7 @@ class DropboxWorker(object):
         file_name = path.split("/")[-1]
         with open(path, 'rb') as file_data:
             try:
-                self.client.put_file(file_name, file_data)
+                self.__client.put_file(file_name, file_data)
             except Exception as e:
                 logging.exception(e)
             else:
