@@ -3,10 +3,7 @@ from settings import IMAGE
 from uploader import DropboxWorker
 
 
-def get_file_list():
-    return glob.glob(IMAGE.directory + "/*.jpg")
-
-
 if __name__ == '__main__':
-    files_to_upload = get_file_list()
-    DropboxWorker(files_to_upload).work()
+    while True:
+        files_to_upload = glob.glob(IMAGE.directory + "/*.jpg")
+        DropboxWorker(files_to_upload).work()
