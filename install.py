@@ -6,7 +6,7 @@ import subprocess
 def sudo(command_text):
     parts = ['sudo']
     parts.extend(command_text.split(command_text))
-    subprocess.call(parts)
+    subprocess.call(parts, shell=True)
 
 
 def apt_get_install(package_name):
