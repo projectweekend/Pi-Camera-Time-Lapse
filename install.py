@@ -3,24 +3,13 @@
 import subprocess
 
 
-def sudo(command_text):
-    parts = ['sudo']
-    parts.extend(command_text.split(command_text))
-    subprocess.call(parts, shell=True)
-
-
-def apt_get_install(package_name):
-    command_text = "apt-get -y install {0}".format(package_name)
-    sudo(command_text)
-
-
 def main():
     # Install system dependencies
-    sudo("apt-get update")
-    sudo("apt-get -y upgrade")
-    apt_get_install("upstart")
-    apt_get_install("python-dev")
-    apt_get_install("python-pip")
+    subprocess.call(["apt-get", "update"])
+    subprocess.call(["apt-get", "-y", "upgrade"])
+    subprocess.call(["apt-get", "-y", "install", "upstart"])
+    subprocess.call(["apt-get", "-y", "install", "python-dev"])
+    subprocess.call(["apt-get", "-y", "install", "python-pip"])
 
     # Setup the virtualenv
     subprocess.call(["pip", "install", "virtualenv"])
