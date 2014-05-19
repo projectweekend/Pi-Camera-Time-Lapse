@@ -22,6 +22,6 @@ def has_valid_dropbox_token():
 
 def display_token_instructions():
     print('MISSING DROPBOX TOKEN!')
-    print('1. Go to https://rpi-camera-uploader.herokuapp.com/ and click "Get started"')
+    print('1. Go to http://pi-camera-time-lapse.herokuapp.com/ and click "Get started"')
     print('2. "Allow" Raspberry Pi Camera Uploader access to Dropbox')
     print('3. Put downloaded "dropbox.txt" in root of "/Pi-Camera-Time-Lapse"')
