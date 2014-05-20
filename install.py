@@ -22,8 +22,11 @@ def main():
     subprocess.call(["cp", "upstart/dropbox-worker.conf", "/etc/init"])
     subprocess.call(["cp", "upstart/time-lapse.conf", "/etc/init"])
 
-    print("Installation complete!")
-    print("Please reboot your Raspberry Pi :)")
+    print("Installation of system dependencies is complete!")
+    print("Next steps...")
+    print("1.) activate the virtualenv: source ./env/bin/activate")
+    print("2.) install requirements: pip install -r requirements.txt")
+    print("3.) reboot your Pi: sudo reboot")
 
 
 if __name__ == '__main__':
