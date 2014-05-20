@@ -32,3 +32,9 @@ pip install -r requirements.txt
 ```
 sudo reboot
 ```
+
+## Making a time-lapse
+
+* `settings.yml` - This file controls the options for a time-lapse. The defaults for the `image` section are already configured for the highest quality JPG image the Raspberry Pi Camera will will capture. In the `snap` section, use the `interval` value to control the number of seconds you want to wait between images and the `total` to control the number of images you want to capture.
+
+* `sudo service time-lapse start` - This command kicks off the `time-lapse` Upstart job using the configurations from `settings.yml`
