@@ -1,4 +1,4 @@
-## Getting started
+## Install/Setup
 The following instructions cover everything necessary to setup your Raspberry Pi for this project. I tried to script out a good chunk of system installation stuff to help keep things fairly simple. With that said, I welcome feedback about how to make this better.
 
 #### Step 1: Clone this repository
