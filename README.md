@@ -3,7 +3,9 @@ The following instructions cover everything necessary to setup your Raspberry Pi
 
 #### Step 1: Clone this repository
 
-`git clone https://github.com/projectweekend/Pi-Camera-Time-Lapse.git`
+```
+git clone https://github.com/projectweekend/Pi-Camera-Time-Lapse.git
+```
 
 #### Step 2: Authorize Dropbox account
 For automatic uploading of time-lapse images to Dropbox, you must authorize your account with the Pi Camera Time-Lapse app. I made the the following website to take you through the process and generate a key file you will need to save on your Raspberry Pi: [http://pi-camera-time-lapse.herokuapp.com/](http://pi-camera-time-lapse.herokuapp.com/). Once the `dropbox.txt` file is downloaded, save it the root of the project directory: `Pi-Camera-Time-Lapse/`.
