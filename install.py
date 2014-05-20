@@ -14,8 +14,6 @@ def main():
     # Setup the virtualenv
     subprocess.call(["pip", "install", "virtualenv"])
     subprocess.call(["virtualenv", "env", "--no-site-packages"])
-    subprocess.call([".", "env/bin/activate"])
-    subprocess.call(["pip", "install", "-r", "requirements.txt"])
 
     # Make default images folder
     subprocess.call(["mkdir", "/home/pi/images"])
