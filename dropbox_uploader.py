@@ -5,7 +5,7 @@ import glob
 import logging
 from dropbox.client import DropboxClient
 from uploader import load_dropbox_token, has_valid_dropbox_token
-from settings import IMAGE
+import settings
 
 
 access_token = load_dropbox_token()
@@ -14,7 +14,7 @@ access_token = load_dropbox_token()
 def main():
     if has_valid_dropbox_token():
         client = DropboxClient(access_token)
-        paths = glob.glob(IMAGE.directory + "/*.jpg")
+        paths = glob.glob(settings.IMAGES_DIRECTORY + "/*.jpg")
         for path in paths:
             name = path.split("/")[-1]
             with open(path, 'rb') as data:
