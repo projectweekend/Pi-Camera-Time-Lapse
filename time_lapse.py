@@ -10,10 +10,6 @@ import uploader
 
 if __name__ == '__main__':
 
-    if not uploader.has_valid_dropbox_token():
-        uploader.display_token_instructions()
-        sys.exit(1)
-
     with picamera.PiCamera() as camera:
         camera.resolution = (IMAGE.resolution_x, IMAGE.resolution_y)
         time.sleep(2)
