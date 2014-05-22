@@ -8,8 +8,7 @@ from settings import IMAGE, SNAP
 import uploader
 
 
-if __name__ == '__main__':
-
+def main():
     with picamera.PiCamera() as camera:
         camera.resolution = (IMAGE.resolution_x, IMAGE.resolution_y)
         time.sleep(2)
@@ -19,3 +18,8 @@ if __name__ == '__main__':
             if i == SNAP.total - 1:
                 break
             time.sleep(SNAP.interval)
+
+
+if __name__ == '__main__':
+    while True:
+        main()
