@@ -13,8 +13,8 @@ def main():
         image_quality = job.image_settings.quality
         snap_interval = job.snap_settings.interval
         snap_total = job.snap_settings.total
-        image_file_prefix = job.image_settings.prefix
-        output_file = IMAGES_DIRECTORY + '/' + image_file_prefix + '_{counter:03d}.jpg'
+        file_prefix = job.image_settings.prefix
+        output_file = IMAGES_DIRECTORY + '/' + file_prefix + '_{counter:03d}.jpg'
         with picamera.PiCamera() as camera:
             camera.resolution = (resolution_x, resolution_y)
             time.sleep(2)
