@@ -10,20 +10,20 @@ def main():
     if job.exists():
         resolution_x = job.image_settings.resolution_x
         resolution_y = job.image_settings.resolution_y
-        image_quality = job.image_settings.quality
-        snap_interval = job.snap_settings.interval
-        snap_total = job.snap_settings.total
+        quality = job.image_settings.quality
+        interval = job.snap_settings.interval
+        total = job.snap_settings.total
         file_prefix = job.image_settings.prefix
         output_file = IMAGES_DIRECTORY + '/' + file_prefix + '_{counter:03d}.jpg'
         with picamera.PiCamera() as camera:
             camera.resolution = (resolution_x, resolution_y)
             time.sleep(2)
-            capture = camera.capture_continuous(output_file, quality=image_quality)
+            capture = camera.capture_continuous(output_file, quality=quality)
             for i, _ in enumerate(capture):
-                if i == snap_total - 1:
+                if i == total - 1:
                     job.archive()
                     break
-                time.sleep(snap_interval)
+                time.sleep(interval)
 
 
 if __name__ == '__main__':
