@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import subprocess
-import settings
 
 
 def main():
@@ -17,9 +16,9 @@ def main():
     subprocess.call(["virtualenv", "env", "--no-site-packages"])
 
     # Make default images folder
-    subprocess.call(["mkdir", settings.IMAGES_DIRECTORY])
-    subprocess.call(["mkdir", settings.JOBS_DIRECTORY])
-    subprocess.call(["mkdir", settings.JOBS_ARCHIVE])
+    subprocess.call(["mkdir", "/home/pi/time-lapse/images"])
+    subprocess.call(["mkdir", "/home/pi/time-lapse/jobs"])
+    subprocess.call(["mkdir", "/home/pi/time-lapse/jobs/archive"])
 
     # Copy Upstart scripts
     subprocess.call(["cp", "upstart/dropbox-uploader.conf", "/etc/init"])
