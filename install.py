@@ -19,6 +19,7 @@ def main():
     # Make default images folder
     subprocess.call(["mkdir", settings.IMAGES_DIRECTORY])
     subprocess.call(["mkdir", settings.JOBS_DIRECTORY])
+    subprocess.call(["mkdir", settings.JOBS_ARCHIVE])
 
     # Copy Upstart scripts
     subprocess.call(["cp", "upstart/dropbox-uploader.conf", "/etc/init"])
