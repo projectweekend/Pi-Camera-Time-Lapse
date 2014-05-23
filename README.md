@@ -35,6 +35,26 @@ sudo reboot
 
 ## Making a time-lapse
 
-* `settings.yml` - This file controls the options for a time-lapse. The defaults for the `image` section are already set for the highest quality JPG image the Raspberry Pi Camera will capture. In the `snap` section, use the `interval` value to control the number of seconds you want to wait between images and the `total` to control the number of images you want to capture.
+Time-lapse sequences are controlled using job files written in [YAML](http://en.wikipedia.org/wiki/YAML). This file describes everything needed to execute the time-lapse. Job files must be saved in the directory `/home/pi/time-lapse/jobs` and prefixed with `job_`. If multiple files are found, they will be processed one at a time in alphabetical order.
 
-* `sudo service time-lapse start` - This command kicks off the `time-lapse` Upstart job using the configurations from `settings.yml`
+#### Example job file
+
+Name: `job_sunset_time_lapse.yml`
+
+~~~yaml
+snap:
+    interval: 60
+    total: 30
+image:
+    prefix: sunset_
+    quality: 100
+    resolution_x: 2592
+    resolution_y: 1944
+~~~
+
+* `snap.interval` - The number of seconds that should elapse between shots
+* `snap.total` - The total number of pictures to take
+* `image.prefix` - A custom file prefix added to each image file saved
+* `image.quality` - Controls JPG quality (max: 100)
+* `image.resolution_x` - The horizontal resolution of the output image (max: 2592)
+* `image.resolution_y` - The vertical resolution of the output image (max: 1944)
