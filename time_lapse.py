@@ -1,23 +1,28 @@
 #!/usr/bin/env python
 
-import sys
 import time
 import picamera
-import settings
-from settings import IMAGE, SNAP
-import uploader
+from settings import Job, IMAGES_DIRECTORY
 
 
 def main():
-    with picamera.PiCamera() as camera:
-        camera.resolution = (IMAGE.resolution_x, IMAGE.resolution_y)
-        time.sleep(2)
-        output_file = settings.IMAGES_DIRECTORY + '/img{counter:03d}.jpg'
-        capture = camera.capture_continuous(output_file, quality=IMAGE.quality)
-        for i, _ in enumerate(capture):
-            if i == SNAP.total - 1:
-                break
-            time.sleep(SNAP.interval)
+    job = Job()
+    if job.exists():
+        resolution_x = job.image_settings.resolution_x
+        resolution_y = job.image_settings.resolution_y
+        image_quality = job.image_settings.quality
+        snap_interval = job.snap_settings.interval
+        snap_total = job.snap_settings.total
+        with picamera.PiCamera() as camera:
+            camera.resolution = (resolution_x, resolution_y)
+            time.sleep(2)
+            output_file = IMAGES_DIRECTORY + '/img{counter:03d}.jpg'
+            capture = camera.capture_continuous(output_file, quality=image_quality)
+            for i, _ in enumerate(capture):
+                if i == snap_total - 1:
+                    job.archive()
+                    break
+                time.sleep(snap_interval)
 
 
 if __name__ == '__main__':
