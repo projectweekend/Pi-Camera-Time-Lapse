@@ -2,6 +2,8 @@
 
 import time
 import picamera
+from threading import Thread
+from uploader import upload_file
 from settings import Job, IMAGES_DIRECTORY
 
 
@@ -19,10 +21,11 @@ def main():
             camera.resolution = (resolution_x, resolution_y)
             time.sleep(2)
             capture = camera.capture_continuous(output_file, quality=quality)
-            for i, _ in enumerate(capture):
+            for i, file_name in enumerate(capture):
                 if i == total - 1:
                     job.archive()
                     break
+                Thread(target=upload_file, args=(file_name,)).start()
                 time.sleep(interval)
 
 
