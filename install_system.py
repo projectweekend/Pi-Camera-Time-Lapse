@@ -12,8 +12,7 @@ def main():
     subprocess.call(["apt-get", "-y", "install", "python-pip"])
     subprocess.call(["pip", "install", "virtualenv"])
 
-    # Copy Upstart scripts
-    subprocess.call(["cp", "upstart/dropbox-uploader.conf", "/etc/init"])
+    # Copy Upstart script
     subprocess.call(["cp", "upstart/time-lapse.conf", "/etc/init"])
 
     print("Next steps...")

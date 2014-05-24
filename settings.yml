@@ -1,7 +1,0 @@
-snap:
-    interval: 5
-    total: 10
-image:
-    quality: 100
-    resolution_x: 2592
-    resolution_y: 1944
