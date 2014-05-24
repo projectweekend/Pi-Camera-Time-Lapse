@@ -22,10 +22,10 @@ def main():
             time.sleep(2)
             capture = camera.capture_continuous(output_file, quality=quality)
             for i, file_name in enumerate(capture):
+                Thread(target=upload_file, args=(file_name,)).start()
                 if i == total - 1:
                     job.archive()
                     break
-                Thread(target=upload_file, args=(file_name,)).start()
                 time.sleep(interval)
 
 
