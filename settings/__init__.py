@@ -20,7 +20,7 @@ class Job(object):
 
     def __init__(self):
         self.__load_job_file()
-        self.__parse_job_data()
+        self.__parse_settings_data()
 
     def __load_job_file(self):
         job_files = glob.glob(JOBS_DIRECTORY + "/job_*.yml")
@@ -29,20 +29,18 @@ class Job(object):
         except IndexError:
             self.job_file = None
 
-    def __parse_job_data(self):
+    def __parse_settings_data(self):
         try:
             with open(self.job_file) as file_data:
                 parsed_yaml = yaml.safe_load(file_data)
-                self.image_settings = Setting(parsed_yaml['image'])
-                self.snap_settings = Setting(parsed_yaml['snap'])
+                self.settings = Setting(parsed_yaml)
         except TypeError:
-            self.image_settings = None
-            self.snap_settings = None
+            self.settings = None
 
     def exists(self):
-        if not self.job_file:
-            return False
-        return True
+        if self.job_file and self.settings:
+            return True
+        return False
 
     def archive(self):
         shutil.move(self.job_file, JOBS_ARCHIVE)

@@ -56,7 +56,7 @@ file_prefix: sunset_
 resolution_x: 2592
 resolution_y: 1944
 quality: 100
-iso: 400
+ISO: 400
 brightness: 50
 contrast: 0
 saturation: 0
