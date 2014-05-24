@@ -55,9 +55,17 @@ snap:
     total: 30
 image:
     prefix: sunset_
-    quality: 100
     resolution_x: 2592
     resolution_y: 1944
+    quality: 100
+    iso: 400
+    brightness: 50
+    contrast: 0
+    saturation: 0
+    sharpness: 0
+    shutter_speed: 0
+    exposure_compensation: 0
+    rotation: 0
 ~~~
 
 * `snap.interval` - The number of seconds that should elapse between shots
