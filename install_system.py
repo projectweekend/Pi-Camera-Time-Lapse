@@ -10,6 +10,7 @@ def main():
     subprocess.call(["apt-get", "-y", "--force-yes", "install", "upstart"])
     subprocess.call(["apt-get", "-y", "install", "python-dev"])
     subprocess.call(["apt-get", "-y", "install", "python-pip"])
+    subprocess.call(["pip", "install", "virtualenv"])
 
     # Copy Upstart scripts
     subprocess.call(["cp", "upstart/dropbox-uploader.conf", "/etc/init"])

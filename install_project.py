@@ -5,7 +5,6 @@ import subprocess
 
 def main():
     # Setup the virtualenv
-    subprocess.call(["pip", "install", "virtualenv"])
     subprocess.call(["virtualenv", "env", "--no-site-packages"])
 
     # Make default images folder
