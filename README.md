@@ -50,22 +50,20 @@ Time-lapse sequences are controlled using job files written in [YAML](http://en.
 Name: `job_sunset_time_lapse.yml`
 
 ~~~yaml
-snap:
-    interval: 60
-    total: 30
-image:
-    prefix: sunset_
-    resolution_x: 2592
-    resolution_y: 1944
-    quality: 100
-    iso: 400
-    brightness: 50
-    contrast: 0
-    saturation: 0
-    sharpness: 0
-    shutter_speed: 0
-    exposure_compensation: 0
-    rotation: 0
+snap_interval: 60
+snap_total: 30
+file_prefix: sunset_
+resolution_x: 2592
+resolution_y: 1944
+quality: 100
+iso: 400
+brightness: 50
+contrast: 0
+saturation: 0
+sharpness: 0
+shutter_speed: 0
+exposure_compensation: 0
+rotation: 0
 ~~~
 
 * `snap.interval` - The number of seconds that should elapse between shots
