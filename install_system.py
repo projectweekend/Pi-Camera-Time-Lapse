@@ -11,6 +11,10 @@ def main():
     subprocess.call(["apt-get", "-y", "install", "python-dev"])
     subprocess.call(["apt-get", "-y", "install", "python-pip"])
 
+    # Copy Upstart scripts
+    subprocess.call(["cp", "upstart/dropbox-uploader.conf", "/etc/init"])
+    subprocess.call(["cp", "upstart/time-lapse.conf", "/etc/init"])
+
     print("Next steps...")
     print("1.) run the install project script: ./install_project.py")
 

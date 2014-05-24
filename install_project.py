@@ -13,10 +13,6 @@ def main():
     subprocess.call(["mkdir", "-p", "/home/pi/time-lapse/jobs"])
     subprocess.call(["mkdir", "-p", "/home/pi/time-lapse/jobs/archive"])
 
-    # Copy Upstart scripts
-    subprocess.call(["cp", "upstart/dropbox-uploader.conf", "/etc/init"])
-    subprocess.call(["cp", "upstart/time-lapse.conf", "/etc/init"])
-
     print("Installation is complete!")
     print("Next steps...")
     print("1.) activate the virtualenv: source ./env/bin/activate")
