@@ -66,4 +66,4 @@ exposure_compensation: 0
 rotation: 0
 ~~~
 
-Each of the configurable options in the job file correspond to a setting in the [picamera.PiCamera](http://picamera.readthedocs.org/en/latest/api.html#picamera.PiCamera) object. For more detailed info on each please see the PiCamera documentation.
+Each of the configurable options in the job file corresponds to a setting in the [picamera.PiCamera](http://picamera.readthedocs.org/en/latest/api.html#picamera.PiCamera) object.
