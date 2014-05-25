@@ -2,14 +2,6 @@ import time
 from picamera import PiCamera
 from threading import Thread
 from uploader import upload_file
-# iso = job.image_settings.iso
-# brightness = job.image_settings.brightness
-# contrast = job.image_settings.contrast
-# saturation = job.image_settings.saturation
-# sharpness = job.image_settings.sharpness
-# shutter_speed = job.image_settings.shutter_speed
-# exposure_compensation = job.image_settings.exposure_compensation
-# rotation = job.image_settings.rotation
 
 
 class ConfigurableCamera(PiCamera):
@@ -20,13 +12,72 @@ class ConfigurableCamera(PiCamera):
         self.__configure()
 
     def __set_resolution(self):
-        resolution_x = self.__job.settings.resolution_x
-        resolution_y = self.__job.settings.resolution_y
-        if resolution_x and resolution_y:
+        try:
+            resolution_x = self.__job.settings.resolution_x
+            resolution_y = self.__job.settings.resolution_y
+        except AttributeError:
+            pass
+        else:
             self.resolution = (resolution_x, resolution_y)
+
+    def __set_ISO(self):
+        try:
+            self.ISO = self.__job.settings.ISO
+        except AttributeError:
+            pass
+
+    def __set_brightness(self):
+        try:
+            self.brightness = self.__job.brightness
+        except AttributeError:
+            pass
+
+    def __set_contrast(self):
+        try:
+            self.contrast = self.__job.settings.contrast
+        except AttributeError:
+            pass
+
+    def __set_exposure_compensation(self):
+        try:
+            self.exposure_compensation = self.__job.settings.exposure_compensation
+        except AttributeError:
+            pass
+
+    def __set_rotation(self):
+        try:
+            self.rotation = self.__job.settings.rotation
+        except AttributeError:
+            pass
+
+    def __set_saturation(self):
+        try:
+            self.saturation = self.__job.settings.saturation
+        except AttributeError:
+            pass
+
+    def __set_sharpness(self):
+        try:
+            self.sharpness = self.__job.settings.sharpness
+        except AttributeError:
+            pass
+
+    def __set_shutter_speed(self):
+        try:
+            self.shutter_speed = self.__job.settings.shutter_speed
+        except AttributeError:
+            pass
 
     def __configure(self):
         self.__set_resolution()
+        self.__set_ISO()
+        self.__set_brightness()
+        self.__set_contrast()
+        self.__set_exposure_compensation()
+        self.__set_rotation()
+        self.__set_saturation()
+        self.__set_sharpness()
+        self.__set_shutter_speed()
         time.sleep(2)
 
     def time_lapse(self, output_file):
