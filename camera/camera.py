@@ -10,8 +10,6 @@ from uploader import upload_file
 # shutter_speed = job.image_settings.shutter_speed
 # exposure_compensation = job.image_settings.exposure_compensation
 # rotation = job.image_settings.rotation
-# resolution_x = job.image_settings.resolution_x
-# resolution_y = job.image_settings.resolution_y
 
 
 class ConfigurableCamera(PiCamera):
@@ -43,5 +41,3 @@ class ConfigurableCamera(PiCamera):
                 self.__job.archive()
                 break
             time.sleep(interval)
-
-
