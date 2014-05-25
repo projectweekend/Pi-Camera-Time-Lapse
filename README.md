@@ -66,9 +66,4 @@ exposure_compensation: 0
 rotation: 0
 ~~~
 
-* `snap.interval` - The number of seconds that should elapse between shots
-* `snap.total` - The total number of pictures to take
-* `image.prefix` - A custom file prefix added to each image file saved
-* `image.quality` - Controls JPG quality (max: 100)
-* `image.resolution_x` - The horizontal resolution of the output image (max: 2592)
-* `image.resolution_y` - The vertical resolution of the output image (max: 1944)
+Each of the configurable options in the job file correspond to a setting in the [picamera.PiCamera](http://picamera.readthedocs.org/en/latest/api.html#picamera.PiCamera) object. For more detailed info on each please see the PiCamera documentation.
