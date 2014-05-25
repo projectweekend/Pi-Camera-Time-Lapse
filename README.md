@@ -45,7 +45,7 @@ sudo reboot
 
 Time-lapse sequences are controlled using job files written in [YAML](http://en.wikipedia.org/wiki/YAML). This file describes everything needed to execute the time-lapse. Job files must be saved in the directory `/home/pi/time-lapse/jobs` and prefixed with `job_`. If multiple files are found, they will be processed one at a time in alphabetical order.
 
-The `time-lapse` service is always running in the background. As soon as it finds a job file, it will load those configurations and begin taking photos. Since there is no image preview in this system, it's best to run a couple test images on your subject before commiting to a full time-lapse job. To do this, simply save a job file with a `snap_total` of 1. When the resulting image shows up in Dropbox, review it, tweak settings, and repeat until you find what you want.
+The `time-lapse` service runs in the background as an Upstart job. As soon as it finds a job file, it will load those configurations and begin taking photos. Since there is no image preview, it's best to run a couple test images on your subject before commiting to a full time-lapse job. To do this, simply save a job file with a `snap_total` of 1. When the resulting image shows up in Dropbox, review it, tweak settings, and repeat until you get what you want.
 
 #### Example job file
 
