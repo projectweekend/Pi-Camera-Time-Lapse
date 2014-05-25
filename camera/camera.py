@@ -1,7 +1,7 @@
 import time
 from picamera import PiCamera
-
-
+from threading import Thread
+from uploader import upload_file
 # iso = job.image_settings.iso
 # brightness = job.image_settings.brightness
 # contrast = job.image_settings.contrast
@@ -30,4 +30,18 @@ class ConfigurableCamera(PiCamera):
     def __configure(self):
         self.__set_resolution()
         time.sleep(2)
+
+    def time_lapse(self, output_file):
+        quality = self.__job.settings.quality
+        interval = self.__job.settings.snap_interval
+        total = self.__job.settings.snap_total
+
+        capture = self.capture_continuous(output_file, quality=quality)
+        for i, file_name in enumerate(capture):
+            Thread(target=upload_file, args=(file_name,)).start()
+            if i == total - 1:
+                self.__job.archive()
+                break
+            time.sleep(interval)
+
 
