@@ -18,7 +18,7 @@ From the project directory `Pi-Camera-Time-Lapse/`, run the following command:
 ./install.sh
 ```
 
-**NOTE:** When the script starts to install [Upstart](http://upstart.ubuntu.com/), you will receive a warning message. It will prompt you to type the following message to confirm the installation: `Yes, do as I say!`. You must type it exactly.
+**NOTE:** This step will probably take several minutes to complete. When the script starts to install [Upstart](http://upstart.ubuntu.com/), you will receive a warning message. It will prompt you to type the following message to confirm the installation: `Yes, do as I say!`. You must type it exactly.
 
 #### Step 4: Reboot
 

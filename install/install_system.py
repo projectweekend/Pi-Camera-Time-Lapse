@@ -13,7 +13,7 @@ def main():
     subprocess.call(["pip", "install", "virtualenv"])
 
     # Copy Upstart script
-    subprocess.call(["cp", "../upstart/time-lapse.conf", "/etc/init"])
+    subprocess.call(["cp", "upstart/time-lapse.conf", "/etc/init"])
 
 
 if __name__ == '__main__':
