@@ -5,7 +5,7 @@ import subprocess
 
 def main():
     # Setup the virtualenv
-    subprocess.call(["virtualenv", "env", "--no-site-packages"])
+    subprocess.call(["virtualenv", "../env", "--no-site-packages"])
 
     # Make default images folder
     subprocess.call(["mkdir", "-p", "/home/pi/time-lapse/images"])
