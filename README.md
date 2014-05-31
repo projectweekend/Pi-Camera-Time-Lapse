@@ -1,4 +1,4 @@
-## Install/Setup
+## Installation & Setup
 The following instructions cover everything necessary to setup your Raspberry Pi for this project. I tried to script out a good chunk of system installation stuff to help keep things fairly simple. With that said, I welcome feedback about how to make this better.
 
 #### Step 1: Clone this repository
@@ -8,19 +8,22 @@ git clone https://github.com/projectweekend/Pi-Camera-Time-Lapse.git
 ```
 
 #### Step 2: Authorize Dropbox account
-For automatic uploading of time-lapse images to Dropbox, you must authorize your account with the Pi Camera Time-Lapse app. I made the the following website to take you through the process and generate a key file you will need to save on your Raspberry Pi: [http://pi-camera-time-lapse.herokuapp.com/](http://pi-camera-time-lapse.herokuapp.com/). Once the `dropbox.txt` file is downloaded, save it the root of the project directory: `Pi-Camera-Time-Lapse/`.
+To automatically upload time-lapse images to Dropbox, you must authorize your account with the Pi Camera Time-Lapse Dropbox app. I made the the following website to handle this process and generate a key file you will need to save on your Raspberry Pi: [http://pi-camera-time-lapse.herokuapp.com/](http://pi-camera-time-lapse.herokuapp.com/). Once the `dropbox.txt` file is downloaded, save it the root of the project directory: `Pi-Camera-Time-Lapse/`.
 
 #### Step 3: Install system stuff
 
+From the project directory `Pi-Camera-Time-Lapse/`, run the following command:
+
 ```
-cd Pi-Camera-Time-Lapse
 sudo ./install_system.py
 ```
 
-**NOTE:** When the command that installs [Upstart](http://upstart.ubuntu.com/) is executed, you will receive a warning. It will prompt you to type the following message to confirm the installation: `Yes, do as I say!`. You must type it exactly.
+**NOTE:** When the script starts to install [Upstart](http://upstart.ubuntu.com/), you will receive a warning message. It will prompt you to type the following message to confirm the installation: `Yes, do as I say!`. You must type it exactly.
 
 
 #### Step 4: Install project stuff
+
+From the project directory `Pi-Camera-Time-Lapse/`, run the following command:
 
 ```
 ./install_project.py
@@ -29,6 +32,8 @@ sudo ./install_system.py
 **NOTE:** Do not run this step with `sudo`.
 
 #### Step 5: Install Python libraries
+
+Everything in this project runs in a virtual Python environment. In this step you are activating the virtual environment and installing the Python libraries listed in the probvided `requirements.txt` file.
 
 ```
 source ./env/bin/activate
@@ -40,6 +45,8 @@ pip install -r requirements.txt
 ```
 sudo reboot
 ```
+
+-------------------------------------------------------------------------------
 
 ## Making a time-lapse
 
