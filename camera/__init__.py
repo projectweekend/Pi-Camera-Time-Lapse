@@ -1,1 +1,1 @@
-from .camera import TimeLapseCamera
+from .camera import ConfigurableCamera
