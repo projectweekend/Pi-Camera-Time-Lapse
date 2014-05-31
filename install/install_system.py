@@ -15,9 +15,6 @@ def main():
     # Copy Upstart script
     subprocess.call(["cp", "../upstart/time-lapse.conf", "/etc/init"])
 
-    print("Next steps...")
-    print("1.) run the install project script: ./install_project.py")
-
 
 if __name__ == '__main__':
     main()

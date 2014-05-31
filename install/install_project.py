@@ -12,12 +12,6 @@ def main():
     subprocess.call(["mkdir", "-p", "/home/pi/time-lapse/jobs"])
     subprocess.call(["mkdir", "-p", "/home/pi/time-lapse/jobs/archive"])
 
-    print("Installation is complete!")
-    print("Next steps...")
-    print("1.) activate the virtualenv: source ./env/bin/activate")
-    print("2.) install requirements: pip install -r requirements.txt")
-    print("3.) reboot your Pi: sudo reboot")
-
 
 if __name__ == '__main__':
     main()

@@ -10,37 +10,17 @@ git clone https://github.com/projectweekend/Pi-Camera-Time-Lapse.git
 #### Step 2: Authorize Dropbox account
 To automatically upload time-lapse images to Dropbox, you must authorize your account with the Pi Camera Time-Lapse Dropbox app. I made the the following website to handle this process and generate a key file you will need to save on your Raspberry Pi: [http://pi-camera-time-lapse.herokuapp.com/](http://pi-camera-time-lapse.herokuapp.com/). Once the `dropbox.txt` file is downloaded, save it the root of the project directory: `Pi-Camera-Time-Lapse/`.
 
-#### Step 3: Install system stuff
+#### Step 3: Run install script
 
 From the project directory `Pi-Camera-Time-Lapse/`, run the following command:
 
 ```
-sudo ./install_system.py
+./install.sh
 ```
 
 **NOTE:** When the script starts to install [Upstart](http://upstart.ubuntu.com/), you will receive a warning message. It will prompt you to type the following message to confirm the installation: `Yes, do as I say!`. You must type it exactly.
 
-
-#### Step 4: Install project stuff
-
-From the project directory `Pi-Camera-Time-Lapse/`, run the following command:
-
-```
-./install_project.py
-```
-
-**NOTE:** Do not run this step with `sudo`.
-
-#### Step 5: Install Python libraries
-
-Everything in this project runs in a virtual Python environment. In this step you are activating the virtual environment and installing the Python libraries listed in the probvided `requirements.txt` file.
-
-```
-source ./env/bin/activate
-pip install -r requirements.txt
-```
-
-#### Step 6: Reboot
+#### Step 4: Reboot
 
 ```
 sudo reboot
@@ -50,9 +30,9 @@ sudo reboot
 
 ## Making a time-lapse
 
-Time-lapse sequences are controlled using job files written in [YAML](http://en.wikipedia.org/wiki/YAML). This file describes everything needed to execute the time-lapse. Job files must be saved in the directory `/home/pi/time-lapse/jobs` and prefixed with `job_`. If multiple files are found, they will be processed one at a time in alphabetical order. When a time-lapse has completed, the job file will be moved into the archive folder: `/home/pi/time-lapse/jobs/archive`.
+Time-lapse sequences are controlled using job files written in [YAML](http://en.wikipedia.org/wiki/YAML). This file describes everything needed to execute the time-lapse. Job files must be saved in the directory `/home/pi/time-lapse/jobs` and prefixed with `job_`. If multiple files are found, they will be processed one at a time. When a time-lapse has completed, the job file will be moved into the archive folder: `/home/pi/time-lapse/jobs/archive`.
 
-The `time-lapse` service runs in the background as an Upstart job. As soon as it finds a job file, it will load those configurations and begin taking photos. Since there is no image preview, it's best to run a couple test images on your subject before commiting to a full time-lapse job. To do this, simply save a job file with a `snap_total` of 1. When the resulting image shows up in Dropbox, review it, tweak settings, and repeat until you get what you want.
+The `time-lapse` service runs in the background as an Upstart job. As soon as it finds a job file, in the directory referenced above, it will load those configurations and begin taking photos. Since there is no image preview, it's best to run a couple test images on your subject before commiting to a full time-lapse job. To do this, simply save a job file with a `snap_total` of 1. When the resulting image shows up in Dropbox, review it, tweak settings, and repeat until you get what you want.
 
 #### Example job file
 
