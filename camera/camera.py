@@ -1,7 +1,7 @@
 import time
 from picamera import PiCamera
 from threading import Thread
-from uploader import upload_file
+from uploader import upload_file, has_network_connection
 
 
 class ConfigurableCamera(PiCamera):
@@ -10,6 +10,7 @@ class ConfigurableCamera(PiCamera):
         super(ConfigurableCamera, self).__init__()
         self.__job = job
         self.__configure()
+        self.__test_network()
 
     def __set_resolution(self):
         try:
@@ -85,7 +86,11 @@ class ConfigurableCamera(PiCamera):
         self.__set_saturation()
         self.__set_sharpness()
         self.__set_shutter_speed()
+        self.__set_auto_upload()
         time.sleep(2)
+
+    def __test_network(self):
+        self.has_network_connection = has_network_connection()
 
     def time_lapse(self, output_file):
         quality = self.__job.settings.quality
@@ -94,7 +99,7 @@ class ConfigurableCamera(PiCamera):
 
         capture = self.capture_continuous(output_file, quality=quality)
         for i, file_name in enumerate(capture):
-            if self.auto_upload:
+            if self.auto_upload and self.has_network_connection:
                 Thread(target=upload_file, args=(file_name,)).start()
             if i == total - 1:
                 self.__job.archive()
