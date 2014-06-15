@@ -1,6 +1,7 @@
 import os
 import glob
 import logging
+import subprocess
 import dropbox
 from dropbox.client import DropboxClient, ErrorResponse
 import settings
@@ -39,3 +40,12 @@ def upload_file(path):
             logging.exception(e)
         else:
             os.remove(path)
+
+
+def has_network_conntection(self):
+    command = ['ping', '-c', '1', '-W', '2', 'www.dropbox.com']
+    try:
+        subprocess.check_output(command)
+        return True
+    except:
+        return False
