@@ -68,6 +68,13 @@ class ConfigurableCamera(PiCamera):
         except AttributeError:
             pass
 
+    def __set_auto_upload(self):
+        try:
+            if self.__job.settings.auto_upload == "Off":
+                self.auto_upload = False
+        except AttributeError:
+            self.auto_upload = True
+
     def __configure(self):
         self.__set_resolution()
         self.__set_ISO()
@@ -87,7 +94,8 @@ class ConfigurableCamera(PiCamera):
 
         capture = self.capture_continuous(output_file, quality=quality)
         for i, file_name in enumerate(capture):
-            Thread(target=upload_file, args=(file_name,)).start()
+            if self.auto_upload:
+                Thread(target=upload_file, args=(file_name,)).start()
             if i == total - 1:
                 self.__job.archive()
                 break
