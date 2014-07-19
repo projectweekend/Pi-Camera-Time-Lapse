@@ -42,7 +42,7 @@ def upload_file(path):
             os.remove(path)
 
 
-def has_network_conntection(self):
+def has_network_connection(self):
     command = ['ping', '-c', '1', '-W', '2', 'www.dropbox.com']
     try:
         subprocess.check_output(command)
