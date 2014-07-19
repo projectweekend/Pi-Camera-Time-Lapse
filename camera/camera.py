@@ -92,6 +92,7 @@ class ConfigurableCamera(PiCamera):
         self.__set_saturation()
         self.__set_sharpness()
         self.__set_shutter_speed()
+        self.__set_awb_mode()
         self.__set_auto_upload()
         time.sleep(2)
 
