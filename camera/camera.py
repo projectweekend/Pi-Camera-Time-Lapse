@@ -69,6 +69,12 @@ class ConfigurableCamera(PiCamera):
         except AttributeError:
             pass
 
+    def __set_awb_mode(self):
+        try:
+            self.awb_mode = self.__job.settings.awb_mode
+        except AttributeError:
+            pass
+
     def __set_auto_upload(self):
         try:
             if self.__job.settings.auto_upload == "Off":
