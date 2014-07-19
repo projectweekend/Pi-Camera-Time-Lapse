@@ -63,3 +63,18 @@ If you want to disable automatic Dropbox uploading, add the following line to th
 ```
 auto_upload: Off
 ```
+
+#### AWB_MODE Reference
+
+I dug these out of `PiCamera.AWB_MODES` so you don't have to. Use these values in your job file for the `awb_mode`. The default, if the job property is not set, is `auto`.
+
+* `auto`
+* `cloudy`
+* `flash`
+* `fluorescent`
+* `horizon`
+* `incandescent`
+* `off`
+* `shade`
+* `sunlight`
+* `tungsten`
