@@ -41,7 +41,7 @@ Name: `job_sunset_time_lapse.yml`
 ~~~yaml
 snap_interval: 60
 snap_total: 30
-file_prefix: sunset_
+file_prefix: sunset
 resolution_x: 2592
 resolution_y: 1944
 quality: 100
