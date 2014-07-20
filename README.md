@@ -52,6 +52,7 @@ saturation: 0
 sharpness: 0
 shutter_speed: 0
 exposure_compensation: 0
+exposure_mode: auto
 rotation: 0
 awb_mode: auto
 ~~~
@@ -64,9 +65,9 @@ If you want to disable automatic Dropbox uploading, add the following line to th
 auto_upload: Off
 ```
 
-#### AWB_MODE Reference
+#### AWB_MODES Reference
 
-I dug these out of `PiCamera.AWB_MODES` so you don't have to. Use these values in your job file for the `awb_mode`. The default, if the job property is not set, is `auto`.
+I dug these out of `PiCamera.AWB_MODES` so you don't have to. Use these values in your job file for the `awb_mode`. The default, if the property is not set, is `auto`.
 
 * `auto`
 * `cloudy`
@@ -78,3 +79,20 @@ I dug these out of `PiCamera.AWB_MODES` so you don't have to. Use these values i
 * `shade`
 * `sunlight`
 * `tungsten`
+
+#### EXPOSURE_MODES Reference
+
+I dug these out of `PiCamera.EXPOSURE_MODES` so you don't have to. Use these values in your job file for the `exposure_mode`. The default, if the property is not set, is `auto`.
+
+* `antishake`
+* `auto`
+* `backlight`
+* `beach`
+* `fireworks`
+* `fixedfps`
+* `night`
+* `nightpreview`
+* `snow`
+* `sports`
+* `spotlight`
+* `verylong`

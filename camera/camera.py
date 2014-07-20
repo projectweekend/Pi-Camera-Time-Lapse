@@ -45,6 +45,12 @@ class ConfigurableCamera(PiCamera):
         except AttributeError:
             pass
 
+    def __set_exposure_mode(self):
+        try:
+            self.exposure_mode = self.__job.settings.exposure_mode
+        except AttributeError:
+            pass
+
     def __set_rotation(self):
         try:
             self.rotation = self.__job.settings.rotation
@@ -88,6 +94,7 @@ class ConfigurableCamera(PiCamera):
         self.__set_brightness()
         self.__set_contrast()
         self.__set_exposure_compensation()
+        self.__set_exposure_mode()
         self.__set_rotation()
         self.__set_saturation()
         self.__set_sharpness()
