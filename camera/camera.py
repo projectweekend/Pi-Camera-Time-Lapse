@@ -81,6 +81,12 @@ class ConfigurableCamera(PiCamera):
         except AttributeError:
             pass
 
+    def __set_image_effect(self):
+        try:
+            self.image_effect = self.__job.settings.image_effect
+        except AttributeError:
+            pass
+
     def __set_auto_upload(self):
         try:
             if self.__job.settings.auto_upload == "Off":
@@ -100,6 +106,7 @@ class ConfigurableCamera(PiCamera):
         self.__set_sharpness()
         self.__set_shutter_speed()
         self.__set_awb_mode()
+        self.__set_image_effect()
         self.__set_auto_upload()
         time.sleep(2)
 

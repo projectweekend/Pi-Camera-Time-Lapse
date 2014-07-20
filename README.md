@@ -65,7 +65,7 @@ If you want to disable automatic Dropbox uploading, add the following line to th
 auto_upload: Off
 ```
 
-#### AWB_MODES Reference
+#### AWB_MODES List
 
 I dug these out of `PiCamera.AWB_MODES` so you don't have to. Use these values in your job file for the `awb_mode`. The default, if the property is not set, is `auto`.
 
@@ -80,7 +80,7 @@ I dug these out of `PiCamera.AWB_MODES` so you don't have to. Use these values i
 * `sunlight`
 * `tungsten`
 
-#### EXPOSURE_MODES Reference
+#### EXPOSURE_MODES List
 
 I dug these out of `PiCamera.EXPOSURE_MODES` so you don't have to. Use these values in your job file for the `exposure_mode`. The default, if the property is not set, is `auto`.
 
@@ -96,3 +96,31 @@ I dug these out of `PiCamera.EXPOSURE_MODES` so you don't have to. Use these val
 * `sports`
 * `spotlight`
 * `verylong`
+
+#### IMAGE_EFFECTS List
+
+I dug these out of `PiCamera.EXPOSURE_MODES` so you don't have to. Use these values in your job file for the `image_effect`. The default, if the property is not set, is `none`.
+
+* `blackboard`
+* `blur`
+* `cartoon`
+* `colorbalance`
+* `colorpoint`
+* `colorswap`
+* `denoise`
+* `emboss`
+* `film`
+* `gpen`
+* `hatch`
+* `negative`
+* `none`
+* `oilpaint`
+* `pastel`
+* `posterise`
+* `posterize`
+* `saturation`
+* `sketch`
+* `solarize`
+* `washedout`
+* `watercolor`
+* `whiteboard`
