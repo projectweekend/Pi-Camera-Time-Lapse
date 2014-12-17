@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Pi-camera-time-lapse : A time-lapse program for the Raspberry Pi Camera Module with automatic uploads to Dropbox">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Pi-camera-time-lapse</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/projectweekend/Pi-Camera-Time-Lapse">View on GitHub</a>
+
+          <h1 id="project_title">Pi-camera-time-lapse</h1>
+          <h2 id="project_tagline">A time-lapse program for the Raspberry Pi Camera Module with automatic uploads to Dropbox</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/projectweekend/Pi-Camera-Time-Lapse/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/projectweekend/Pi-Camera-Time-Lapse/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>
+<a id="installation--setup" class="anchor" href="#installation--setup" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation &amp; Setup</h2>
+
+<p>The following instructions cover everything necessary to setup your Raspberry Pi for this project. I tried to script out a good chunk of system installation stuff to help keep things fairly simple. With that said, I welcome feedback about how to make this better.</p>
+
+<h4>
+<a id="step-1-clone-this-repository" class="anchor" href="#step-1-clone-this-repository" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 1: Clone this repository</h4>
+
+<pre><code>git clone https://github.com/projectweekend/Pi-Camera-Time-Lapse.git
+</code></pre>
+
+<h4>
+<a id="step-2-authorize-dropbox-account" class="anchor" href="#step-2-authorize-dropbox-account" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 2: Authorize Dropbox account</h4>
+
+<p>To automatically upload time-lapse images to Dropbox, you must authorize your account with the Pi Camera Time-Lapse Dropbox app. I made the the following website to handle this process and generate a key file you will need to save on your Raspberry Pi: <a href="http://pi-camera-time-lapse.herokuapp.com/">http://pi-camera-time-lapse.herokuapp.com/</a>. Once the <code>dropbox.txt</code> file is downloaded, save it the root of the project directory: <code>Pi-Camera-Time-Lapse/</code>.</p>
+
+<h4>
+<a id="step-3-run-install-script" class="anchor" href="#step-3-run-install-script" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 3: Run install script</h4>
+
+<p>From the project directory <code>Pi-Camera-Time-Lapse/</code>, run the following command:</p>
+
+<pre><code>./install.sh
+</code></pre>
+
+<p><strong>NOTE:</strong> This step will probably take several minutes to complete. When the script starts to install <a href="http://upstart.ubuntu.com/">Upstart</a>, you will receive a warning message. It will prompt you to type the following message to confirm the installation: <code>Yes, do as I say!</code>. You must type it exactly.</p>
+
+<h4>
+<a id="step-4-reboot" class="anchor" href="#step-4-reboot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Step 4: Reboot</h4>
+
+<pre><code>sudo reboot
+</code></pre>
+
+<hr>
+
+<h2>
+<a id="making-a-time-lapse" class="anchor" href="#making-a-time-lapse" aria-hidden="true"><span class="octicon octicon-link"></span></a>Making a time-lapse</h2>
+
+<p>Time-lapse sequences are controlled using job files written in <a href="http://en.wikipedia.org/wiki/YAML">YAML</a>. This file describes everything needed to execute the time-lapse. Job files must be saved in the directory <code>/home/pi/time-lapse/jobs</code> and prefixed with <code>job_</code>. If multiple files are found, they will be processed one at a time. When a time-lapse has completed, the job file will be moved into the archive folder: <code>/home/pi/time-lapse/jobs/archive</code>.</p>
+
+<p>The <code>time-lapse</code> service runs in the background as an Upstart job. As soon as it finds a job file, in the directory referenced above, it will load those configurations and begin taking photos. Since there is no image preview, it's best to run a couple test images on your subject before commiting to a full time-lapse job. To do this, simply save a job file with a <code>snap_total</code> of 1. When the resulting image shows up in Dropbox, review it, tweak settings, and repeat until you get what you want.</p>
+
+<h4>
+<a id="example-job-file" class="anchor" href="#example-job-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example job file</h4>
+
+<p>Name: <code>job_sunset_time_lapse.yml</code></p>
+
+<div class="highlight highlight-yaml"><pre><span class="pl-c1"><span class="pl-ent">snap_interval:</span> 60</span>
+<span class="pl-c1"><span class="pl-ent">snap_total:</span> 30</span>
+<span class="pl-s1"><span class="pl-ent">file_prefix:</span> <span class="pl-s1">sunset</span></span>
+<span class="pl-c1"><span class="pl-ent">resolution_x:</span> 2592</span>
+<span class="pl-c1"><span class="pl-ent">resolution_y:</span> 1944</span>
+<span class="pl-c1"><span class="pl-ent">quality:</span> 100</span>
+<span class="pl-c1"><span class="pl-ent">ISO:</span> 400</span>
+<span class="pl-c1"><span class="pl-ent">brightness:</span> 50</span>
+<span class="pl-c1"><span class="pl-ent">contrast:</span> 0</span>
+<span class="pl-c1"><span class="pl-ent">saturation:</span> 0</span>
+<span class="pl-c1"><span class="pl-ent">sharpness:</span> 0</span>
+<span class="pl-c1"><span class="pl-ent">shutter_speed:</span> 0</span>
+<span class="pl-c1"><span class="pl-ent">exposure_compensation:</span> 0</span>
+<span class="pl-s1"><span class="pl-ent">exposure_mode:</span> <span class="pl-s1">auto</span></span>
+<span class="pl-c1"><span class="pl-ent">rotation:</span> 0</span>
+<span class="pl-s1"><span class="pl-ent">awb_mode:</span> <span class="pl-s1">auto</span></span></pre></div>
+
+<p>Each of the configurable options in the job file corresponds to a setting in the <a href="http://picamera.readthedocs.org/en/latest/api.html#picamera.PiCamera">picamera.PiCamera</a> object. Any setting not specified in the job file will use its default value in <em>picamera.PiCamera</em>.</p>
+
+<p>If you want to disable automatic Dropbox uploading, add the following line to the config file:</p>
+
+<pre><code>auto_upload: Off
+</code></pre>
+
+<h4>
+<a id="awb_modes-list" class="anchor" href="#awb_modes-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>AWB_MODES List</h4>
+
+<p>I dug these out of <code>PiCamera.AWB_MODES</code> so you don't have to. Use these values in your job file for the <code>awb_mode</code>. The default, if the property is not set, is <code>auto</code>.</p>
+
+<ul>
+<li><code>auto</code></li>
+<li><code>cloudy</code></li>
+<li><code>flash</code></li>
+<li><code>fluorescent</code></li>
+<li><code>horizon</code></li>
+<li><code>incandescent</code></li>
+<li><code>off</code></li>
+<li><code>shade</code></li>
+<li><code>sunlight</code></li>
+<li><code>tungsten</code></li>
+</ul>
+
+<h4>
+<a id="exposure_modes-list" class="anchor" href="#exposure_modes-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>EXPOSURE_MODES List</h4>
+
+<p>I dug these out of <code>PiCamera.EXPOSURE_MODES</code> so you don't have to. Use these values in your job file for the <code>exposure_mode</code>. The default, if the property is not set, is <code>auto</code>.</p>
+
+<ul>
+<li><code>antishake</code></li>
+<li><code>auto</code></li>
+<li><code>backlight</code></li>
+<li><code>beach</code></li>
+<li><code>fireworks</code></li>
+<li><code>fixedfps</code></li>
+<li><code>night</code></li>
+<li><code>nightpreview</code></li>
+<li><code>snow</code></li>
+<li><code>sports</code></li>
+<li><code>spotlight</code></li>
+<li><code>verylong</code></li>
+</ul>
+
+<h4>
+<a id="image_effects-list" class="anchor" href="#image_effects-list" aria-hidden="true"><span class="octicon octicon-link"></span></a>IMAGE_EFFECTS List</h4>
+
+<p>I dug these out of <code>PiCamera.EXPOSURE_MODES</code> so you don't have to. Use these values in your job file for the <code>image_effect</code>. The default, if the property is not set, is <code>none</code>.</p>
+
+<ul>
+<li><code>blackboard</code></li>
+<li><code>blur</code></li>
+<li><code>cartoon</code></li>
+<li><code>colorbalance</code></li>
+<li><code>colorpoint</code></li>
+<li><code>colorswap</code></li>
+<li><code>denoise</code></li>
+<li><code>emboss</code></li>
+<li><code>film</code></li>
+<li><code>gpen</code></li>
+<li><code>hatch</code></li>
+<li><code>negative</code></li>
+<li><code>none</code></li>
+<li><code>oilpaint</code></li>
+<li><code>pastel</code></li>
+<li><code>posterise</code></li>
+<li><code>posterize</code></li>
+<li><code>saturation</code></li>
+<li><code>sketch</code></li>
+<li><code>solarize</code></li>
+<li><code>washedout</code></li>
+<li><code>watercolor</code></li>
+<li><code>whiteboard</code></li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Pi-camera-time-lapse maintained by <a href="https://github.com/projectweekend">projectweekend</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
